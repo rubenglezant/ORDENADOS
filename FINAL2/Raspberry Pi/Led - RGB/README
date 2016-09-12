@@ -1,0 +1,26 @@
+Primera prueba de Rapshberry
+
+---------------------------------------------------------------------------------------------------------------
+1. Cargar los paquetes
+---------------------------------------------------------------------------------------------------------------
+https://pihw.wordpress.com/lessons/rgb-led-lessons/rgb-led-lesson-0-the-absolute-basics-gpio/
+
+Before you start you will need to ensure you have the latest RPi.GPIO library installed.
+
+To do this, connect your Raspberry Pi to the internet and run the following commands from the terminal:
+
+sudo apt-get update
+sudo apt-get install python-dev python-rpi.gpio
+
+As for the bash example above, create the file by typing the following from the terminal (command prompt) on your Raspberry Pi.
+
+nano rgbledtest.py
+
+Type in the following script and then save and exit (Ctrl+x, y and enter).
+
+Run the script:
+
+sudo python rgbledtest.py
+
+If you get any errors, then use nano again and examine your script for errors.
+
