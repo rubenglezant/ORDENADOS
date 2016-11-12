@@ -1,7 +1,6 @@
-import pandas.io.data as web
+import pandas_datareader.data as web
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import datetime
 import sys
 
