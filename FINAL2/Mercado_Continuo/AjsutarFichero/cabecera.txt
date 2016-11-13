@@ -1,0 +1,1 @@
+Ind;Valor;Fecha1;Fecha2;FechaLectura

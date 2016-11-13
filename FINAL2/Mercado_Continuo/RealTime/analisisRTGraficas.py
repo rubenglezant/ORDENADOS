@@ -5,7 +5,10 @@ from datetime import datetime,timedelta
 
 # wkhtmltopdf --page-size A3 web-CDR.html bolsa.pdf
 
-lista = ['TEF', 'ITX', 'CDR', 'EDR', 'DGI', 'ENC', 'PHM', 'RLIA', 'TUB', 'NTH']
+#lista = ['TEF', 'ITX', 'CDR', 'EDR', 'DGI', 'ENC', 'PHM', 'RLIA', 'TUB', 'NTH']
+lista = ['DGI', 'RLIA', 'A3M', 'BIO', 'CDR', 'OLE', 'EBRO', 'EDR', 'ENO',
+       'ENC', 'TRG', 'TUB', 'OHL', 'ZEL', 'NHH', 'FAE', 'ZOT', 'ECR',
+       'SNC', 'LBK']
 #lista = ['TEF', 'ITX', 'CDR']
 # lista = ['EDR']
 
@@ -33,7 +36,7 @@ def pintaUno():
 def pintaDos(diaInicio, diaFin):
     # lista = ['TEF','ITX','CDR','EDR','DGI','ENC','PHM','RLIA','TUB','NTH']
 
-    df = pd.read_csv('/home/ruben/temp/temp/valores.csv', sep=';', parse_dates=[4])
+    df = pd.read_csv('valores.csv', sep=';', parse_dates=[4])
 
     for indice in lista:
 
@@ -44,16 +47,18 @@ def pintaDos(diaInicio, diaFin):
 
         for i in range(diaInicio,diaFin):
 
-            df_EDR = df[df['Ind']==indice].set_index('FechaLectura')
+            #df_EDR = df[df['Ind']==indice].set_index('FechaLectura')
+            df_EDR = df[df['Ind'] == indice]
 
-            fecha_1 = datetime(2016, 10, i,8,30,0)
-            fecha_2 = datetime(2016, 10, i,17,50,0)
+            fecha_1 = datetime(2016, 11, i,8,30,0)
+            fecha_2 = datetime(2016, 11, i,17,50,0)
 
-            aux = df_EDR[fecha_1:]
-            aux = aux[:fecha_2]
+            aux = df_EDR[df_EDR['FechaLectura']>fecha_1]
+            aux = aux[aux['FechaLectura']<fecha_2]
             #aux = aux.reset_index()
-
-            df_EDR["Valora6"] = df_EDR['Valor']*0 + aux['Valor']
+            aux.set_index('FechaLectura')
+            df_EDR = aux
+            df_EDR['Valora6'] = df_EDR['Valor']
 
             #print (df_EDR.describe())
 
@@ -120,5 +125,5 @@ def creaWebDos(diaInicio, diaFin):
     f.write('</html>' + '\n')
     f.close()
 
-pintaDos(10,15)
-creaWebDos(10,15)
+pintaDos(7,7+5)
+creaWebDos(7,7+5)
